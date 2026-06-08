@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sehaj 💗</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #f4a0b8;
+    --deep-pink: #d4537e;
+    --soft-pink: #fce8ef;
+    --orange: #f07050;
+    --warm: #fff5f0;
+    --petal: #ffd6e0;
+    --cream: #fffaf7;
+    --text: #3a2030;
+    --muted: #8a6070;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Floating petals background */
+  .petal-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .petal {
+    position: absolute;
+    width: 12px; height: 16px;
+    background: var(--petal);
+    border-radius: 50% 50% 50% 0;
+    opacity: 0.4;
+    animation: floatPetal linear infinite;
+  }
+
+  @keyframes floatPetal {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.4; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Main layout */
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 2rem 0 3rem;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--deep-pink);
+    background: var(--soft-pink);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--deep-pink);
+  }
+
+  .header p {
+    margin-top: 1rem;
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* Apology cards */
+  .apology-section {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  .apology-card {
+    background: white;
+    border: 1px solid #f0dde5;
+    border-radius: 20px;
+    padding: 1.5rem 1.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .apology-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(212,83,126,0.1);
+  }
+
+  .card-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--soft-pink);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--text);
+  }
+
+  .card-content p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ENVELOPE SECTION */
+  .envelope-section {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .envelope-wrapper {
+    display: inline-block;
+    perspective: 1000px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .envelope {
+    position: relative;
+    width: 320px;
+    height: 380px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+  }
+
+  .envelope:hover {
+    transform: scale(1.02);
+  }
+
+  /* envelope body */
+  .env-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(145deg, #ffe0ec, #ffd0e0);
+    border-radius: 4px 4px 12px 12px;
+    border: 1.5px solid #f5b8cc;
+    box-shadow: 0 10px 40px rgba(212,83,126,0.2);
+  }
+
+  /* left and right triangles at bottom of back */
+  .env-left, .env-right, .env-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .env-left {
+    left: 0;
+    border-style: solid;
+    border-width: 90px 0 0 160px;
+    border-color: transparent transparent transparent #f9c9da;
+  }
+
+  .env-right {
+    right: 0;
+    border-style: solid;
+    border-width: 90px 160px 0 0;
+    border-color: transparent #f9c9da transparent transparent;
+  }
+
+  /* envelope flap (top) */
+  .env-flap {
+    position: absolute;
+    bottom: 180px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    transform-origin: bottom center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .env-flap svg {
+    display: block;
+    width: 100%;
+  }
+
+  .envelope.open .env-flap {
+    transform: rotateX(-180deg);
+  }
+
+  /* letter inside */
+  .letter {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 24px;
+    background: white;
+    border-radius: 10px;
+    padding: 1.3rem 1.4rem;
+    box-shadow: 0 4px 24px rgba(212,83,126,0.18);
+    border: 1px solid #f0dde5;
+    transform: translateY(10px);
+    transition: transform 0.7s 0.35s cubic-bezier(0.34, 1.3, 0.64, 1), opacity 0.5s 0.25s;
+    opacity: 0;
+    z-index: 20;
+    text-align: left;
+    pointer-events: none;
+  }
+
+  .envelope.open .letter {
+    transform: translateY(-180px);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .letter h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--deep-pink);
+    margin-bottom: 0.4rem;
+  }
+
+  .letter p {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .letter .signature {
+    margin-top: 0.6rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--deep-pink);
+    text-align: right;
+  }
+
+  .env-cta {
+    margin-top: 1rem;
+    font-size: 12px;
+    color: var(--muted);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* heart decoration on envelope */
+  .env-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    font-size: 1.5rem;
+    z-index: 3;
+    transition: opacity 0.3s;
+  }
+
+  .envelope.open .env-heart {
+    opacity: 0;
+  }
+
+  /* MINIGAME */
+  .game-section {
+    animation: fadeUp 0.9s 0.6s ease both;
+    margin-bottom: 3rem;
+  }
+
+  .game-container {
+    background: white;
+    border: 1px solid #f0dde5;
+    border-radius: 24px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(212,83,126,0.06);
+  }
+
+  .game-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .game-hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  #gameCanvas {
+    border: 1.5px solid #f0dde5;
+    border-radius: 16px;
+    cursor: grab;
+    touch-action: none;
+    max-width: 100%;
+    background: var(--warm);
+  }
+
+  #gameCanvas:active { cursor: grabbing; }
+
+  .game-status {
+    margin-top: 1rem;
+    font-size: 13px;
+    color: var(--muted);
+    min-height: 20px;
+  }
+
+  .reset-btn {
+    margin-top: 1rem;
+    background: var(--soft-pink);
+    border: none;
+    color: var(--deep-pink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .reset-btn:hover { background: #f4c0d1; }
+
+  /* WIN OVERLAY */
+  #winOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(255, 245, 250, 0.92);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: overlayIn 0.5s ease both;
+  }
+
+  #winOverlay.show { display: flex; }
+
+  @keyframes overlayIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .win-content {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .win-hearts {
+    font-size: 4rem;
+    animation: heartBoom 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  @keyframes heartBoom {
+    0% { transform: scale(0) rotate(-20deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+
+  .win-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--deep-pink);
+    animation: fadeUp 0.5s 0.3s ease both;
+  }
+
+  .win-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-weight: 300;
+    animation: fadeUp 0.5s 0.5s ease both;
+  }
+
+  .win-close {
+    margin-top: 2rem;
+    background: var(--deep-pink);
+    color: white;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 12px 32px;
+    border-radius: 30px;
+    cursor: pointer;
+    animation: fadeUp 0.5s 0.7s ease both;
+    transition: opacity 0.2s;
+  }
+
+  .win-close:hover { opacity: 0.85; }
+
+  /* floating win hearts */
+  .float-heart {
+    position: fixed;
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: floatUp 2.5s ease both;
+    z-index: 1001;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(0); opacity: 1; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-80vh) scale(1.2) rotate(20deg); opacity: 0; }
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 2rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+    animation: fadeUp 0.9s 0.8s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0;
+    color: var(--petal);
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #f0dde5;
+  }
+  .divider span { font-size: 1.2rem; }
+
+</style>
+</head>
+<body>
+
+<!-- Floating petals -->
+<div class="petal-bg" id="petalBg"></div>
+
+<!-- Win overlay -->
+<div id="winOverlay">
+  <div class="win-content">
+    <span class="win-hearts">🧡💗</span>
+    <h2 class="win-title">Love Found!</h2>
+    <p class="win-sub">Just like how you found your way into my heart, Sehaj 🌸</p>
+    <button class="win-close" onclick="closeWin()">Back to you ♡</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-tag">a note from the heart</div>
+    <h1>I'm sorry,<br><em>Sehaj.</em></h1>
+    <p>I messed up — and you deserve so much better than this.</p>
+  </header>
+
+  <div class="divider"><span>♡</span></div>
+
+  <!-- APOLOGY CARDS -->
+  <section class="apology-section">
+    <div class="apology-card">
+      <div class="card-icon">🧠</div>
+      <div class="card-content">
+        <h3>The little things I forgot</h3>
+        <p>I know how much the small details matter to you and this being ur love language, remembering the tiny things make u the happiest. You deserve someone who holds every word and I'm reallty sorry I let them out o my mind.</p>
+      </div>
+    </div>
+    <div class="apology-card">
+      <div class="card-icon">🌧️</div>
+      <div class="card-content">
+        <h3>For the fight that shouldn't have happened</h3>
+        <p>I hate that we argued and again maybe I chose my ego over your peace, and that was wrong.</p>
+      </div>
+    </div>
+    <div class="apology-card">
+      <div class="card-icon">🌱</div>
+      <div class="card-content">
+        <h3>My promise to do better</h3>
+        <p>I want to be more attentive, more present, more careful with u and my words.I've just been giving too littleand that's going to change.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><span>✉️</span></div>
+
+  <!-- ENVELOPE -->
+  <section class="envelope-section">
+    <p class="section-label">A letter, just for you</p>
+
+    <div class="envelope-wrapper" onclick="toggleEnvelope()">
+      <div class="envelope" id="envelope">
+
+        <!-- flap -->
+        <div class="env-flap">
+          <svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="0,0 320,0 160,90" fill="#f9b8cc" stroke="#f5a0b8" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <!-- body -->
+        <div class="env-body">
+          <div class="env-left"></div>
+          <div class="env-right"></div>
+          <div class="env-heart">💗</div>
+        </div>
+
+        <!-- the letter card - outside env-body so it can rise freely -->
+        <div class="letter">
+          <h4>Dear Sehaj,</h4>
+          <p>
+            Forgetting the little things doesn't mean they don't matter
+            it means I need to try harder to be the person you deserve.
+            I tend to forget things,i am just that kind of a person but yes 
+            i really mean to do better at this im sorry.
+          </p>
+          <div class="signature">Love Noorie ♡</div>
+        </div>
+
+      </div>
+    </div>
+    <p class="env-cta">tap to open ↑</p>
+  </section>
+
+  <div class="divider"><span>🎮</span></div>
+
+  <!-- MINIGAME -->
+  <section class="game-section">
+    <div class="game-container">
+      <h2 class="game-title">Find the Heart</h2>
+      <p class="game-hint">Drag the little pink heart into the orange heart 💗</p>
+      <canvas id="gameCanvas" width="480" height="320"></canvas>
+      <p class="game-status" id="gameStatus">Drag me in there! 🌸</p>
+      <button class="reset-btn" onclick="resetGame()">↺ Try again</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>"The best apology is changed behavior."<br>
+    — and I mean it, Sehaj. ♡</p>
+  </footer>
+
+</div>
+
+<script>
+// ── PETALS ──
+const petalBg = document.getElementById('petalBg');
+for (let i = 0; i < 18; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDuration = (8 + Math.random() * 12) + 's';
+  p.style.animationDelay = (Math.random() * 10) + 's';
+  p.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+  p.style.width = (8 + Math.random() * 10) + 'px';
+  p.style.height = (10 + Math.random() * 14) + 'px';
+  petalBg.appendChild(p);
+}
+
+// ── ENVELOPE ──
+let envelopeOpen = false;
+function toggleEnvelope() {
+  envelopeOpen = !envelopeOpen;
+  const env = document.getElementById('envelope');
+  const cta = document.querySelector('.env-cta');
+  if (envelopeOpen) {
+    env.classList.add('open');
+    cta.textContent = 'tap to close ↑';
+  } else {
+    env.classList.remove('open');
+    cta.textContent = 'tap to open ↑';
+  }
+}
+
+// ── MINI GAME ──
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// Responsive canvas
+function resizeCanvas() {
+  const maxW = Math.min(480, canvas.parentElement.clientWidth - 40);
+  canvas.style.width = maxW + 'px';
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const W = 480, H = 320;
+
+// Big orange heart (target) - fixed center-right
+const target = { x: 300, y: 160, size: 90 };
+// Small pink heart (draggable) - starts left
+let small = { x: 110, y: 160, size: 46 };
+let dragging = false;
+let dragOffX = 0, dragOffY = 0;
+let won = false;
+let winAnimT = 0;
+
+function heartPath(cx, cy, s) {
+  // Draw a heart centered at cx,cy with size s
+  const w = s, h = s;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy + h * 0.25);
+  ctx.bezierCurveTo(cx, cy, cx - w * 0.5, cy - h * 0.35, cx - w * 0.5, cy - h * 0.1);
+  ctx.bezierCurveTo(cx - w * 0.5, cy - h * 0.5, cx, cy - h * 0.5, cx, cy - h * 0.15);
+  ctx.bezierCurveTo(cx, cy - h * 0.5, cx + w * 0.5, cy - h * 0.5, cx + w * 0.5, cy - h * 0.1);
+  ctx.bezierCurveTo(cx + w * 0.5, cy - h * 0.35, cx, cy, cx, cy + h * 0.25);
+  ctx.closePath();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // soft bg
+  ctx.fillStyle = '#fff8fb';
+  ctx.fillRect(0, 0, W, H);
+
+  // Soft glowing ring around target when close
+  const dx = small.x - target.x, dy = small.y - target.y;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  if (dist < 80 && !won) {
+    ctx.save();
+    const glow = ctx.createRadialGradient(target.x, target.y, 30, target.x, target.y, 100);
+    glow.addColorStop(0, 'rgba(240,112,80,0.18)');
+    glow.addColorStop(1, 'rgba(240,112,80,0)');
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(target.x, target.y, 100, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Big orange heart
+  ctx.save();
+  if (won) {
+    const scale = 1 + 0.15 * Math.sin(winAnimT * 0.15);
+    ctx.translate(target.x, target.y);
+    ctx.scale(scale, scale);
+    ctx.translate(-target.x, -target.y);
+  }
+  heartPath(target.x, target.y, target.size);
+  ctx.fillStyle = won ? '#ff7a45' : '#f07050';
+  ctx.fill();
+  ctx.strokeStyle = '#e05030';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.restore();
+
+  if (!won) {
+    // Small pink heart (draggable)
+    ctx.save();
+    const hover = dragging ? 1.12 : 1;
+    ctx.translate(small.x, small.y);
+    ctx.scale(hover, hover);
+    ctx.translate(-small.x, -small.y);
+    heartPath(small.x, small.y, small.size);
+    const grad = ctx.createRadialGradient(small.x - small.size * 0.1, small.y - small.size * 0.1, 2, small.x, small.y, small.size * 0.6);
+    grad.addColorStop(0, '#f9c0d3');
+    grad.addColorStop(1, '#d4537e');
+    ctx.fillStyle = grad;
+    ctx.fill();
+    ctx.strokeStyle = '#c04070';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+  } else {
+    // Win state: small heart merges into big
+    winAnimT++;
+    const scale = 0.5 + 0.5 * Math.min(1, winAnimT / 30);
+    ctx.save();
+    ctx.translate(target.x, target.y);
+    ctx.scale(scale, scale);
+    ctx.translate(-target.x, -target.y);
+    heartPath(target.x, target.y, small.size);
+    ctx.fillStyle = 'rgba(255,200,220,0.7)';
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Label hints
+  if (!won) {
+    ctx.fillStyle = '#c080a0';
+    ctx.font = '12px DM Sans, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('drag me', small.x, small.y + small.size * 0.7 + 14);
+    ctx.fillText('place here', target.x, target.y + target.size * 0.75 + 14);
+  } else {
+    winAnimT++;
+    if (winAnimT === 60) showWinOverlay();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = W / rect.width;
+  const scaleY = H / rect.height;
+  const client = e.touches ? e.touches[0] : e;
+  return {
+    x: (client.clientX - rect.left) * scaleX,
+    y: (client.clientY - rect.top) * scaleY
+  };
+}
+
+function isInsideHeart(px, py, cx, cy, s) {
+  // Approximate: use bounding ellipse
+  const nx = (px - cx) / (s * 0.5);
+  const ny = (py - cy) / (s * 0.5);
+  return (nx * nx + ny * ny) < 1;
+}
+
+function onDown(e) {
+  if (won) return;
+  const pos = getPos(e);
+  if (isInsideHeart(pos.x, pos.y, small.x, small.y, small.size)) {
+    dragging = true;
+    dragOffX = small.x - pos.x;
+    dragOffY = small.y - pos.y;
+    e.preventDefault();
+  }
+}
+
+function onMove(e) {
+  if (!dragging || won) return;
+  const pos = getPos(e);
+  small.x = Math.max(small.size / 2, Math.min(W - small.size / 2, pos.x + dragOffX));
+  small.y = Math.max(small.size / 2, Math.min(H - small.size / 2, pos.y + dragOffY));
+  checkWin();
+  e.preventDefault();
+}
+
+function onUp() { dragging = false; }
+
+function checkWin() {
+  const dx = small.x - target.x;
+  const dy = small.y - target.y;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  if (dist < 38 && !won) {
+    won = true;
+    winAnimT = 0;
+    document.getElementById('gameStatus').textContent = '💗 Found! Love always finds its way home.';
+  }
+}
+
+function showWinOverlay() {
+  const overlay = document.getElementById('winOverlay');
+  overlay.classList.add('show');
+  // Spawn floating hearts
+  for (let i = 0; i < 16; i++) {
+    const h = document.createElement('div');
+    h.className = 'float-heart';
+    h.textContent = ['💗', '🧡', '💕', '✨', '🌸'][Math.floor(Math.random() * 5)];
+    h.style.left = (10 + Math.random() * 80) + '%';
+    h.style.bottom = '10%';
+    h.style.animationDelay = (Math.random() * 1.5) + 's';
+    h.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 4000);
+  }
+}
+
+function closeWin() {
+  document.getElementById('winOverlay').classList.remove('show');
+}
+
+function resetGame() {
+  won = false;
+  winAnimT = 0;
+  small = { x: 110, y: 160, size: 46 };
+  document.getElementById('gameStatus').textContent = 'Drag me in there! 🌸';
+  document.getElementById('winOverlay').classList.remove('show');
+}
+
+canvas.addEventListener('mousedown', onDown);
+canvas.addEventListener('mousemove', onMove);
+canvas.addEventListener('mouseup', onUp);
+canvas.addEventListener('touchstart', onDown, { passive: false });
+canvas.addEventListener('touchmove', onMove, { passive: false });
+canvas.addEventListener('touchend', onUp);
+
+draw();
+</script>
+</body>
+</html>
